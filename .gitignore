@@ -1,0 +1,11 @@
+node_modules
+dist
+.nx/cache
+.nx/workspace-data
+playwright-report
+test-results
+*.log
+.DS_Store
+.env
+.env.local
+.vite

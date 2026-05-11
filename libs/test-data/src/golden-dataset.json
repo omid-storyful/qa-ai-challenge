@@ -1,0 +1,222 @@
+[
+  {
+    "id": "G-001",
+    "input": "BREAKING: massive explosion reported in downtown Cairo this morning, casualties unknown.",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": ["developing_story", "high_volatility"],
+    "mustMention": ["breaking", "developing"],
+    "shouldNotMention": [],
+    "notes": "Active breaking-news claim. Expect slower response (modeled retrieval latency).",
+    "severity": "high",
+    "category": "breaking_news"
+  },
+  {
+    "id": "G-002",
+    "input": "Breaking: power outage hits New York City subway system, MTA confirms.",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": ["developing_story"],
+    "mustMention": ["sources", "emerging"],
+    "shouldNotMention": [],
+    "notes": "Breaking-news classification; partial source attribution.",
+    "severity": "medium",
+    "category": "breaking_news"
+  },
+  {
+    "id": "G-003",
+    "input": "Video from yesterday's protest shows police using tear gas on peaceful crowds.",
+    "expectedLabel": "false",
+    "expectedRiskFlags": ["old_footage"],
+    "mustMention": ["reused", "earlier"],
+    "shouldNotMention": [],
+    "notes": "Old footage reused for current event. Reverse-image-search source expected.",
+    "severity": "high",
+    "category": "reused_media"
+  },
+  {
+    "id": "G-004",
+    "input": "Old footage from 2018 being shared as current Ukraine conflict imagery.",
+    "expectedLabel": "false",
+    "expectedRiskFlags": ["old_footage"],
+    "mustMention": ["reused"],
+    "shouldNotMention": [],
+    "notes": "Explicit reused-media indicator.",
+    "severity": "high",
+    "category": "reused_media"
+  },
+  {
+    "id": "G-005",
+    "input": "Photoshopped image of the president shaking hands with a known dictator circulates on social media.",
+    "expectedLabel": "false",
+    "expectedRiskFlags": ["manipulated_media"],
+    "mustMention": ["manipulation", "digital"],
+    "shouldNotMention": [],
+    "notes": "Manipulated-image case; forensic source expected.",
+    "severity": "high",
+    "category": "manipulated_image"
+  },
+  {
+    "id": "G-006",
+    "input": "An anonymous post claims a major bank will collapse next week.",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": ["unsourced_claim"],
+    "mustMention": ["unsourced", "anecdotal"],
+    "shouldNotMention": [],
+    "notes": "Anonymous source — should be flagged for missing source attribution.",
+    "severity": "medium",
+    "category": "missing_source"
+  },
+  {
+    "id": "G-007",
+    "input": "Photos labeled 'Paris riots' are actually from Athens earlier this year.",
+    "expectedLabel": "false",
+    "expectedRiskFlags": ["location_mismatch"],
+    "mustMention": ["location"],
+    "shouldNotMention": [],
+    "notes": "Geolocation contradicts caption. SUT may not categorise this — expect 'unknown'.",
+    "severity": "high",
+    "category": "location_mismatch"
+  },
+  {
+    "id": "G-008",
+    "input": "Footage described as 'today's flooding in Florida' is dated three years earlier.",
+    "expectedLabel": "false",
+    "expectedRiskFlags": ["date_mismatch"],
+    "mustMention": ["date", "earlier"],
+    "shouldNotMention": [],
+    "notes": "Temporal mismatch. SUT may not categorise this — expect 'unknown'.",
+    "severity": "high",
+    "category": "date_mismatch"
+  },
+  {
+    "id": "G-009",
+    "input": "The Onion reports senators have unanimously voted to replace the national anthem with a kazoo solo.",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": ["parody_account"],
+    "mustMention": ["parody", "satire"],
+    "shouldNotMention": ["misinformation"],
+    "notes": "Classic satire; must NOT be labeled misinformation. Surfaces the label/reasoning contradiction defect if present.",
+    "severity": "medium",
+    "category": "satire"
+  },
+  {
+    "id": "G-010",
+    "input": "Obvious parody account posts that the moon landing was filmed in a Walmart parking lot.",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": ["parody_account"],
+    "mustMention": ["parody", "humor"],
+    "shouldNotMention": ["misinformation", "false claim"],
+    "notes": "Parody humor. Reasoning should not classify as misinformation.",
+    "severity": "low",
+    "category": "satire"
+  },
+  {
+    "id": "G-011",
+    "input": "I heard from a friend that the local water supply has been contaminated for weeks.",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": ["unsourced_claim"],
+    "mustMention": ["anecdotal", "unsourced"],
+    "shouldNotMention": [],
+    "notes": "Second-hand anecdote with no source.",
+    "severity": "medium",
+    "category": "unverifiable"
+  },
+  {
+    "id": "G-012",
+    "input": "People say the new vaccine causes mind control but no studies confirm this.",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": ["unsourced_claim"],
+    "mustMention": ["unsourced"],
+    "shouldNotMention": [],
+    "notes": "Hearsay with explicit lack of evidence. Strong candidates may argue this is high_risk_misinfo, not merely unverifiable.",
+    "severity": "high",
+    "category": "unverifiable"
+  },
+  {
+    "id": "G-013",
+    "input": "Massive earthquake levels three cities, government covering it up.",
+    "expectedLabel": "false",
+    "expectedRiskFlags": ["high_risk_misinfo", "potential_harm"],
+    "mustMention": ["no corroborating", "misinformation"],
+    "shouldNotMention": [],
+    "notes": "Sensational, unsourced, high-risk.",
+    "severity": "critical",
+    "category": "high_risk_misinfo"
+  },
+  {
+    "id": "G-014",
+    "input": "Shooting reported at a school — no official confirmation, no media coverage.",
+    "expectedLabel": "false",
+    "expectedRiskFlags": ["high_risk_misinfo", "potential_harm"],
+    "mustMention": ["no corroborating"],
+    "shouldNotMention": [],
+    "notes": "Potentially harmful unverified claim.",
+    "severity": "critical",
+    "category": "high_risk_misinfo"
+  },
+  {
+    "id": "G-015",
+    "input": "According to Reuters, officials confirmed the bridge closure will last through the weekend.",
+    "expectedLabel": "true",
+    "expectedRiskFlags": [],
+    "mustMention": ["credible"],
+    "shouldNotMention": [],
+    "notes": "Benign true claim from credible source. Confidence-sanity check may catch out-of-bounds confidence here.",
+    "severity": "low",
+    "category": "benign_true"
+  },
+  {
+    "id": "G-016",
+    "input": "Associated Press reports that the central bank held interest rates steady at its September meeting.",
+    "expectedLabel": "true",
+    "expectedRiskFlags": [],
+    "mustMention": ["credible"],
+    "shouldNotMention": [],
+    "notes": "Benign true claim with strong source attribution.",
+    "severity": "low",
+    "category": "benign_true"
+  },
+  {
+    "id": "G-017",
+    "input": "AP reports officials confirmed the new transit line will open next month, according to Reuters and Associated Press.",
+    "expectedLabel": "true",
+    "expectedRiskFlags": [],
+    "mustMention": ["credible"],
+    "shouldNotMention": [],
+    "notes": "Multiple source attributions. Likely to push confidence over 1.0 with current weights — useful for confidence-bounds checks.",
+    "severity": "low",
+    "category": "benign_true"
+  },
+  {
+    "id": "G-018",
+    "input": "   ",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": [],
+    "mustMention": [],
+    "shouldNotMention": [],
+    "notes": "Whitespace-only input edge case. Expect 400 or graceful handling; current behavior may return NaN/null confidence.",
+    "severity": "medium",
+    "category": "missing_source"
+  },
+  {
+    "id": "G-019",
+    "input": "Local resident posted a long thread on social media yesterday describing what they say they witnessed at a community meeting last week. The thread runs to several thousand characters and includes detailed quotes attributed to council members, references to past council decisions stretching back over a decade, claims about budget figures, allegations of misconduct against named officials, references to documents the poster says they have seen but does not share, opinions about the motivations of various participants, and predictions about future actions the council is allegedly planning to take in private. Near the very end of the thread — past the two-thousand-character mark — the poster reveals that the entire account is fictional and was written as a creative-writing exercise for a community workshop, with no real council meeting having taken place at the time described. This disclaimer is the critical context that changes how the rest of the thread should be interpreted. Any verification system that truncates input before reading this disclosure will classify the post as a serious unverifiable allegation rather than as fiction.",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": ["unsourced_claim"],
+    "mustMention": ["truncation", "fictional"],
+    "shouldNotMention": [],
+    "notes": "Very long input designed to surface input-truncation behavior — critical disclaimer lives past the 2000-char boundary.",
+    "severity": "high",
+    "category": "unverifiable"
+  },
+  {
+    "id": "G-020",
+    "input": "Rumored leak suggests upcoming product will include unannounced features.",
+    "expectedLabel": "unverified",
+    "expectedRiskFlags": ["unsourced_claim"],
+    "mustMention": ["unsourced"],
+    "shouldNotMention": [],
+    "notes": "Benign rumor — low harm but unverifiable.",
+    "severity": "low",
+    "category": "unverifiable"
+  }
+]

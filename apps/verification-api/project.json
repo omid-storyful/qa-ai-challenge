@@ -1,0 +1,21 @@
+{
+  "name": "verification-api",
+  "sourceRoot": "apps/verification-api/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsx watch apps/verification-api/src/main.ts",
+        "cwd": "."
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "tsc -p apps/verification-api/tsconfig.json",
+        "cwd": "."
+      }
+    }
+  }
+}

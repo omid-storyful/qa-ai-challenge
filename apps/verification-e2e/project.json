@@ -1,0 +1,8 @@
+{
+  "name": "verification-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/verification-e2e/src",
+  "// targets": "to see all targets run: nx show project verification-e2e --web",
+  "targets": {}
+}

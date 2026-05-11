@@ -1,0 +1,21 @@
+{
+  "name": "verification-web",
+  "sourceRoot": "apps/verification-web/src",
+  "projectType": "application",
+  "targets": {
+    "serve": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vite --config apps/verification-web/vite.config.ts",
+        "cwd": "."
+      }
+    },
+    "build": {
+      "executor": "nx:run-commands",
+      "options": {
+        "command": "vite build --config apps/verification-web/vite.config.ts",
+        "cwd": "."
+      }
+    }
+  }
+}
