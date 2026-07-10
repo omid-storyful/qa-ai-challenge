@@ -1,0 +1,6 @@
+{
+  "name": "evaluator",
+  "sourceRoot": "libs/evaluator/src",
+  "projectType": "library",
+  "targets": {}
+}

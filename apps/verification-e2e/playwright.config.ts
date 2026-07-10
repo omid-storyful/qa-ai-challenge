@@ -17,19 +17,34 @@ const baseURL = process.env['BASE_URL'] || 'http://localhost:4200';
  */
 export default defineConfig({
   ...nxE2EPreset(__filename, { testDir: './src' }),
+  fullyParallel: false,
+  workers: 1,
+  retries: process.env.CI ? 2 : 0,
+  reporter: [['list'], ['html', { open: 'never' }]],
+  expect: { timeout: 5_000 },
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
     baseURL,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    screenshot: 'only-on-failure',
+    video: 'retain-on-failure',
   },
   /* Run your local dev server before starting the tests */
-  webServer: {
-    command: 'npm run dev',
-    url: 'http://localhost:4200',
-    reuseExistingServer: !process.env.CI,
-    cwd: workspaceRoot
-  },
+  webServer: [
+    {
+      command: 'npm run dev:api',
+      url: 'http://127.0.0.1:3333/health',
+      reuseExistingServer: !process.env.CI,
+      cwd: workspaceRoot,
+    },
+    {
+      command: 'npm run dev:web',
+      url: 'http://localhost:4200',
+      reuseExistingServer: !process.env.CI,
+      cwd: workspaceRoot,
+    },
+  ],
   projects: [
     {
       name: 'chromium',
