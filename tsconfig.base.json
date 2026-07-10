@@ -13,6 +13,12 @@
       ],
       "@qa-ai-challenge/test-data": [
         "libs/test-data/src/index.ts"
+      ],
+      "@qa-ai-challenge/test-data/golden-dataset": [
+        "libs/test-data/src/golden-dataset.json"
+      ],
+      "@qa-ai-challenge/evaluator": [
+        "libs/evaluator/src/index.ts"
       ]
     }
   }
